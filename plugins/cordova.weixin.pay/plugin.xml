@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova.weixin.pay"
+    version="5.3.0">
+    <name>Weixin</name>
+    
+    <js-module src="www/weixin.js" name="weixin">
+        <clobbers target="navigator.weixin" />
+    </js-module>
+	
+   
+    
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Weixin">
+                <param name="ios-package" value="CDVWeixin"/>
+                <param name="onload" value="true" />
+            </feature>
+		    
+        </config-file>
+		<header-file src="src/ios/CDVWeixin.h" />
+        <source-file src="src/ios/CDVWeixin.m" />
+        <header-file src="src/ios/WXHttpUtil.h" />
+        <source-file src="src/ios/WXHttpUtil.m" />
+        
+        <source-file src="src/ios/weixin/libWeChatSDK.a" framework="true" />
+        <header-file src="src/ios/weixin/WXApi.h" />
+        <header-file src="src/ios/weixin/WXApiObject.h" />
+        
+        <!-- AFNetworking -->
+        <header-file src="src/ios/AFNetworking/AFHTTPClient.h" />
+        <source-file src="src/ios/AFNetworking/AFHTTPClient.m" />
+        <header-file src="src/ios/AFNetworking/AFHTTPRequestOperation.h" />
+        <source-file src="src/ios/AFNetworking/AFHTTPRequestOperation.m" />
+        <header-file src="src/ios/AFNetworking/AFImageRequestOperation.h" />
+        <source-file src="src/ios/AFNetworking/AFImageRequestOperation.m" />
+        <header-file src="src/ios/AFNetworking/AFJSONRequestOperation.h" />
+        <source-file src="src/ios/AFNetworking/AFJSONRequestOperation.m" />
+        <header-file src="src/ios/AFNetworking/AFNetworkActivityIndicatorManager.h" />
+        <source-file src="src/ios/AFNetworking/AFNetworkActivityIndicatorManager.m" />
+        <header-file src="src/ios/AFNetworking/AFNetworking.h" />
+        <header-file src="src/ios/AFNetworking/AFPropertyListRequestOperation.h" />
+        <source-file src="src/ios/AFNetworking/AFPropertyListRequestOperation.m" />
+        <header-file src="src/ios/AFNetworking/AFURLConnectionOperation.h" />
+        <source-file src="src/ios/AFNetworking/AFURLConnectionOperation.m" />
+        <header-file src="src/ios/AFNetworking/AFXMLRequestOperation.h" />
+        <source-file src="src/ios/AFNetworking/AFXMLRequestOperation.m" />
+        <header-file src="src/ios/AFNetworking/UIImageView+AFNetworking.h" />
+        <source-file src="src/ios/AFNetworking/UIImageView+AFNetworking.m" />
+        <!-- afnetworking 依赖security.framework -->
+        <framework src="libsqlite3.0.tbd"/>
+        <framework src="CFNetwork.framework"/>
+        <framework src="libz.1.2.5.tbd" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="Security.framework" />
+        <framework src="libstdc++.6.0.9.tbd" />
+        
+        
+        <header-file src="src/ios/JSONKit/JSONKit.h" />
+        <source-file src="src/ios/JSONKit/JSONKit.m" compiler-flags="-fno-objc-arc"/>
+        
+		<config-file target="*-Info.plist" parent="CFBundleURLTypes">
+		    <array>
+				<dict>
+					<key>CFBundleTypeRole</key>
+					<string>Editor</string>
+					<key>CFBundleURLIconFile</key>
+					<string>icon-50@2x</string>
+					<key>CFBundleURLName</key>
+					<string>weixin</string>
+					<key>CFBundleURLSchemes</key>
+					<array>
+						<string>wxb4ba3c02aa476ea1</string>
+					</array>
+				</dict>
+			</array>
+		</config-file>
+    </platform>
+
+    <!-- android -->
+    <platform name="android">
+       
+    </platform>
+</plugin>
