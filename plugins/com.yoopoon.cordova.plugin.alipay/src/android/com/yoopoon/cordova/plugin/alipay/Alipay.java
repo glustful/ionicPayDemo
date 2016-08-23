@@ -230,7 +230,7 @@ public class Alipay extends CordovaPlugin{
 		orderInfo += "&it_b_pay=\""+timeout+"\"";
 
 		// 支付宝处理完请求后，当前页面跳转到商户指定页面的路径，可空
-		orderInfo += "&return_url=\""+"\"";
+		orderInfo += "&return_url=\"m.alipay.com\"";
 
 		// 调用银行卡支付，需配置此参数，参与签名， 固定值
 		// orderInfo += "&paymethod=\"expressGateway\"";
