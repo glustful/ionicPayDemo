@@ -1,4 +1,4 @@
-﻿package com.yoopoon.cordova.plugin.alipay;
+package com.yoopoon.cordova.plugin.alipay;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
