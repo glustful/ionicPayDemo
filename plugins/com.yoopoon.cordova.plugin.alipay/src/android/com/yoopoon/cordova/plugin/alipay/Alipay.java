@@ -1,4 +1,4 @@
-package com.yoopoon.cordova.plugin.alipay;
+﻿package com.yoopoon.cordova.plugin.alipay;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -129,7 +129,7 @@ public class Alipay extends CordovaPlugin{
 					// 构造PayTask 对象
 					PayTask alipay = new PayTask(cordova.getActivity());
 					// 调用支付接口
-					String result = alipay.pay(payInfo);
+					String result = alipay.pay(payInfo,true);
 
 					Message msg = new Message();
 					msg.what = SDK_PAY_FLAG;
@@ -162,7 +162,7 @@ public class Alipay extends CordovaPlugin{
 			@Override
 			public void run() {
 				PayTask payTask = new PayTask(cordova.getActivity());
-				boolean isExist = payTask.checkAccountIfExist();
+				boolean isExist = true;
 
 				Message msg = new Message();
 				msg.what = SDK_CHECK_FLAG;
@@ -230,7 +230,7 @@ public class Alipay extends CordovaPlugin{
 		orderInfo += "&it_b_pay=\""+timeout+"\"";
 
 		// 支付宝处理完请求后，当前页面跳转到商户指定页面的路径，可空
-		orderInfo += "&return_url=\""+"\"";
+		orderInfo += "&return_url=\"m.alipay.com\"";
 
 		// 调用银行卡支付，需配置此参数，参与签名， 固定值
 		// orderInfo += "&paymethod=\"expressGateway\"";
