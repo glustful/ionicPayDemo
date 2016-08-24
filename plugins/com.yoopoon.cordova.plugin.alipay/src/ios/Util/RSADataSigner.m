@@ -29,7 +29,7 @@
 
 - (NSString *)formatPrivateKey:(NSString *)privateKey {
     const char *pstr = [privateKey UTF8String];
-    int len = [privateKey length];
+    int len = (int)[privateKey length];
     NSMutableString *result = [NSMutableString string];
     [result appendString:@"-----BEGIN PRIVATE KEY-----\n"];
     int index = 0;
@@ -71,7 +71,7 @@
 	[formatKey writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
 	
 	const char *message = [string cStringUsingEncoding:NSUTF8StringEncoding];
-    int messageLength = strlen(message);
+    int messageLength = (int)strlen(message);
     unsigned char *sig = (unsigned char *)malloc(256);
 	unsigned int sig_len;
     int ret = rsa_sign_with_private_key_pem((char *)message, messageLength, sig, &sig_len, (char *)[path UTF8String]);

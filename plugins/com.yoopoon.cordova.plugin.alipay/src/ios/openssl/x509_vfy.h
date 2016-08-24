@@ -57,8 +57,8 @@
  */
 
 #ifndef HEADER_X509_H
-#include "x509."
-/* openssl/x509.h ends up #include-ing this file at about the only
+#include <x509.h>
+/* x509.h ends up #include-ing this file at about the only
  * appropriate moment. */
 #endif
 
