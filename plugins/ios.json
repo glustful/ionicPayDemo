@@ -25,10 +25,10 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
-        "ionic-plugin-keyboard": {
+        "cordova.weixin.pay": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
-        "cordova.weixin.pay": {
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         }
     },

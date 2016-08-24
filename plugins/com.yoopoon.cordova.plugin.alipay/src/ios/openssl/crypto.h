@@ -131,7 +131,7 @@
 #include "ossl_typ.h"
 
 #ifdef CHARSET_EBCDIC
-#include "ebcdic.h"
+#include <ebcdic.h>
 #endif
 
 /* Resolve problems on some operating systems with symbol names that clash

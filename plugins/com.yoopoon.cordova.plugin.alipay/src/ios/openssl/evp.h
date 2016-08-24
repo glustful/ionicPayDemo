@@ -60,7 +60,7 @@
 #define HEADER_ENVELOPE_H
 
 #ifdef OPENSSL_ALGORITHM_DEFINES
-# include "opensslconf.h"
+# include <opensslconf.h>
 #else
 # define OPENSSL_ALGORITHM_DEFINES
 # include "opensslconf.h"

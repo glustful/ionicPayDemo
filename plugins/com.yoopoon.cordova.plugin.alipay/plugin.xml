@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
 	xmlns:android="http://schemas.android.com/apk/res/android" id="com.yoopoon.cordova.plugin.alipay"
 	version="5.3.0">
@@ -56,10 +56,10 @@
 					<key>CFBundleURLIconFile</key>
 					<string>icon-50@2x</string>
 					<key>CFBundleURLName</key>
-					<string>alipay</string>
+					<string>alipaycordova</string>
 					<key>CFBundleURLSchemes</key>
 					<array>
-						<string>alipay</string>
+						<string>alipaycordova</string>
 					</array>
 				</dict>
 			</array>
@@ -82,7 +82,7 @@
 		<config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
 			<array>
 				<string>safepay</string>
-				<string>alipay</string>
+				<string>alipaycordova</string>
 			</array>
 		</config-file>
 	    
@@ -90,8 +90,8 @@
 		<!-- build setting header search path $(SRCROOT)/X5 -->
 		<header-file src="src/ios/CDVAlipay.h" />
 		<source-file src="src/ios/CDVAlipay.m" />
-		<header-file src="src/ios/AlipayOrder.h" />
-		<source-file src="src/ios/AlipayOrder.m" />
+		<header-file src="src/ios/Order.h" />
+		<source-file src="src/ios/Order.m" />
 
 
 		<!-- openssl -->
@@ -172,6 +172,7 @@
 		<header-file src="src/ios/openssl/x509v3.h" target-dir="openssl"/>
 
 		<!-- Util -->
+        
 		<header-file src="src/ios/Util/base64.h" />
 		<source-file src="src/ios/Util/base64.m" />
 		<header-file src="src/ios/Util/config.h" />
@@ -189,6 +190,7 @@
 		<source-file src="src/ios/Util/RSADataSigner.m" />
 		<header-file src="src/ios/Util/RSADataVerifier.h" />
 		<source-file src="src/ios/Util/RSADataVerifier.m" />
+        <resource-file src="src/ios/AlipaySDK.bundle"/> 
 		
 		<config-file target="config.xml" parent="/*">
 			<feature name="Alipay">
@@ -201,10 +203,17 @@
 		<source-file src="src/ios/libssl.a" framework="true" />
 		<!-- 手动copy framework bundle 文件 -->
 		
-		<!-- afnetworking 依赖security.framework -->
-        <framework src="Security.framework"/>
-        <framework src="SystemConfiguration.framework"/>
+        <!-- afnetworking 依赖security.framework -->
+        <framework src="libsqlite3.0.tbd"/>
+        <framework src="libz.1.2.5.tbd" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="Security.framework" />
+        <framework src="libstdc++.6.0.9.tbd" />
         <framework src="AssetsLibrary.framework"/>
+        <framework src="libz.tbd"/>
+        <framework src="libc++.tbd"/>
+        <framework src="CoreMotion.framework"/>
         
         <framework src="src/ios/AlipaySDK.framework" custom="true" />
 	</platform>
