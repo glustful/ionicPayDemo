@@ -82,7 +82,8 @@
 		<config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
 			<array>
 				<string>safepay</string>
-				<string>alipaycordova</string>
+				<string>alipay</string>
+                <string>weixin</string>
 			</array>
 		</config-file>
 	    
