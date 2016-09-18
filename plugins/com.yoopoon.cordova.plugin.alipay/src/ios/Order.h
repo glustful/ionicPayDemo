@@ -1,84 +1,79 @@
 //
 //  Order.h
-//  AliSDKDemo
+//  AlixPayDemo
 //
-//  Created by 方彬 on 07/25/16.
+//  Created by 方彬 on 11/2/13.
 //
 //
 
 #import <Foundation/Foundation.h>
 
-@interface BizContent : NSObject
-
-// NOTE: (非必填项)商品描述
-@property (nonatomic, copy) NSString *body;
-
-// NOTE: 商品的标题/交易标题/订单标题/订单关键字等。
-@property (nonatomic, copy) NSString *subject;
-
-// NOTE: 商户网站唯一订单号
-@property (nonatomic, copy) NSString *out_trade_no;
-
-// NOTE: 该笔订单允许的最晚付款时间，逾期将关闭交易。
-//       取值范围：1m～15d m-分钟，h-小时，d-天，1c-当天(1c-当天的情况下，无论交易何时创建，都在0点关闭)
-//       该参数数值不接受小数点， 如1.5h，可转换为90m。
-@property (nonatomic, copy) NSString *timeout_express;
-
-// NOTE: 订单总金额，单位为元，精确到小数点后两位，取值范围[0.01,100000000]
-@property (nonatomic, copy) NSString *total_amount;
-
-// NOTE: 收款支付宝用户ID。 如果该值为空，则默认为商户签约账号对应的支付宝用户ID (如 2088102147948060)
-@property (nonatomic, copy) NSString *seller_id;
-
-// NOTE: 销售产品码，商家和支付宝签约的产品码 (如 QUICK_MSECURITY_PAY)
-@property (nonatomic, copy) NSString *product_code;
-
-@end
-
-
 @interface Order : NSObject
 
-// NOTE: 支付宝分配给开发者的应用ID(如2014072300007148)
-@property (nonatomic, copy) NSString *app_id;
 
-// NOTE: 支付接口名称
-@property (nonatomic, copy) NSString *method;
+/*********************************支付四要素*********************************/
 
-// NOTE: (非必填项)仅支持JSON
-@property (nonatomic, copy) NSString *format;
+//商户在支付宝签约时，支付宝为商户分配的唯一标识号(以2088开头的16位纯数字)。
+@property (nonatomic, copy) NSString *partner;
 
-// NOTE: (非必填项)HTTP/HTTPS开头字符串
-@property (nonatomic, copy) NSString *return_url;
+//卖家支付宝账号对应的支付宝唯一用户号(以2088开头的16位纯数字),订单支付金额将打入该账户,一个partner可以对应多个seller_id。
+@property (nonatomic, copy) NSString *sellerID;
 
-// NOTE: 参数编码格式，如utf-8,gbk,gb2312等
-@property (nonatomic, copy) NSString *charset;
+//商户网站商品对应的唯一订单号。
+@property (nonatomic, copy) NSString *outTradeNO;
 
-// NOTE: 请求发送的时间，格式"yyyy-MM-dd HH:mm:ss"
-@property (nonatomic, copy) NSString *timestamp;
-
-// NOTE: 请求调用的接口版本，固定为：1.0
-@property (nonatomic, copy) NSString *version;
-
-// NOTE: (非必填项)支付宝服务器主动通知商户服务器里指定的页面http路径
-@property (nonatomic, copy) NSString *notify_url;
-
-// NOTE: (非必填项)商户授权令牌，通过该令牌来帮助商户发起请求，完成业务(如201510BBaabdb44d8fd04607abf8d5931ec75D84)
-@property (nonatomic, copy) NSString *app_auth_token;
-
-// NOTE: 具体业务请求数据
-@property (nonatomic, strong) BizContent *biz_content;
-
-// NOTE: 签名类型
-@property (nonatomic, copy) NSString *sign_type;
+//该笔订单的资金总额，单位为RMB(Yuan)。取值范围为[0.01，100000000.00]，精确到小数点后两位。
+@property (nonatomic, copy) NSString *totalFee;
 
 
-/**
- *  获取订单信息串
- *
- *  @param bEncoded       订单信息串中的各个value是否encode
- *                        非encode订单信息串，用于生成签名
- *                        encode订单信息串 + 签名，用于最终的支付请求订单信息串
- */
-- (NSString *)orderInfoEncoded:(BOOL)bEncoded;
+
+/*********************************商品相关*********************************/
+//商品的标题/交易标题/订单标题/订单关键字等。
+@property (nonatomic, copy) NSString *subject;
+
+//对一笔交易的具体描述信息。如果是多种商品，请将商品描述字符串累加传给body。
+@property (nonatomic, copy) NSString *body;
+
+
+
+/*********************************其他必传参数*********************************/
+
+//接口名称，固定为mobile.securitypay.pay。
+@property (nonatomic, copy) NSString *service;
+
+//商户网站使用的编码格式，固定为utf-8。
+@property (nonatomic, copy) NSString *inputCharset;
+
+//支付宝服务器主动通知商户网站里指定的页面http路径。
+@property (nonatomic, copy) NSString *notifyURL;
+
+
+
+/*********************************可选参数*********************************/
+
+//支付类型，1：商品购买。(不传情况下的默认值)
+@property (nonatomic, copy) NSString *paymentType;
+
+//具体区分本地交易的商品类型,1：实物交易; (不传情况下的默认值),0：虚拟交易; (不允许使用信用卡等规则)。
+@property (nonatomic, copy) NSString *goodsType;
+
+//支付时是否发起实名校验,F：不发起实名校验; (不传情况下的默认值),T：发起实名校验;(商户业务需要买家实名认证)
+@property (nonatomic, copy) NSString *rnCheck;
+
+//标识客户端。
+@property (nonatomic, copy) NSString *appID;
+
+//标识客户端来源。参数值内容约定如下：appenv=“system=客户端平台名^version=业务系统版本”
+@property (nonatomic, copy) NSString *appenv;
+
+//设置未付款交易的超时时间，一旦超时，该笔交易就会自动被关闭。当用户输入支付密码、点击确认付款后（即创建支付宝交易后）开始计时。取值范围：1m～15d，或者使用绝对时间（示例格式：2014-06-13 16:00:00）。m-分钟，h-小时，d-天，1c-当天（1c-当天的情况下，无论交易何时创建，都在0点关闭）。该参数数值不接受小数点，如1.5h，可转换为90m。
+@property (nonatomic, copy) NSString *itBPay;
+
+//商品地址
+@property (nonatomic, copy) NSString *showURL;
+
+//业务扩展参数，支付宝特定的业务需要添加该字段，json格式。 商户接入时和支付宝协商确定。
+@property (nonatomic, strong) NSMutableDictionary *outContext;
+
 
 @end
