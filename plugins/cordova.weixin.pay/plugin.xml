@@ -5,13 +5,13 @@
     id="cordova.weixin.pay"
     version="5.3.0">
     <name>Weixin</name>
-    
+
     <js-module src="www/weixin.js" name="weixin">
         <clobbers target="navigator.weixin" />
     </js-module>
-	
-   
-    
+
+
+
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
@@ -19,17 +19,17 @@
                 <param name="ios-package" value="CDVWeixin"/>
                 <param name="onload" value="true" />
             </feature>
-		    
+
         </config-file>
 		<header-file src="src/ios/CDVWeixin.h" />
         <source-file src="src/ios/CDVWeixin.m" />
         <header-file src="src/ios/WXHttpUtil.h" />
         <source-file src="src/ios/WXHttpUtil.m" />
-        
+
         <source-file src="src/ios/weixin/libWeChatSDK.a" framework="true" />
         <header-file src="src/ios/weixin/WXApi.h" />
         <header-file src="src/ios/weixin/WXApiObject.h" />
-        
+
         <!-- AFNetworking -->
         <header-file src="src/ios/AFNetworking/AFHTTPClient.h" />
         <source-file src="src/ios/AFNetworking/AFHTTPClient.m" />
@@ -58,11 +58,11 @@
         <framework src="SystemConfiguration.framework" />
         <framework src="Security.framework" />
         <framework src="libstdc++.6.0.9.tbd" />
-        
-        
+
+
         <header-file src="src/ios/JSONKit/JSONKit.h" />
         <source-file src="src/ios/JSONKit/JSONKit.m" compiler-flags="-fno-objc-arc"/>
-        
+
 		<config-file target="*-Info.plist" parent="CFBundleURLTypes">
 		    <array>
 				<dict>
@@ -81,8 +81,51 @@
 		</config-file>
     </platform>
 
-    <!-- android -->
-    <platform name="android">
-       
-    </platform>
+  <!-- android -->
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Weixin">
+        <param name="android-package" value="com.atide.cordova.plugin.weixin.Weixin" />
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/manifest/application/activity">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:scheme="wx321a79afb040b14f"/>
+      </intent-filter>
+    </config-file>
+
+<config-file target="AndroidManifest.xml" parent="/manifest">
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+</config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+
+      <activity
+        android:name="com.sharedParking.mz.wxapi.WXPayEntryActivity"
+        android:exported="true"
+        android:launchMode="singleTop">
+      </activity>
+      <receiver
+        android:name="com.atide.cordova.plugin.weixin.AppRegister"
+        android:permission="com.tencent.mm.plugin.permission.SEND" >
+        <intent-filter>
+          <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+        </intent-filter>
+      </receiver>
+    </config-file>
+
+    <source-file src="src/android/libammsdk.jar" target-dir="libs"/>
+    <source-file src="src/android/org.apache.http.legacy.jar" target-dir="libs"/>
+    <source-file src="src/android/com/atide/cordova/plugin/weixin/Util.java" target-dir="src/com/atide/cordova/plugin/weixin" />
+    <source-file src="src/android/com/atide/cordova/plugin/weixin/Weixin.java" target-dir="src/com/atide/cordova/plugin/weixin" />
+    <source-file src="src/android/com/atide/cordova/plugin/weixin/AppRegister.java" target-dir="src/com/atide/cordova/plugin/weixin" />
+    <source-file src="src/android/com/ionicframework/starter/wxapi/WXPayEntryActivity.java" target-dir="src/com/sharedParking/mz/wxapi" />
+  </platform>
+
 </plugin>

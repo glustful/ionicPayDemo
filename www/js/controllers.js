@@ -3,7 +3,7 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope,$ionicLoading) {
 
   $scope.alipay = function(){
-    alert("alipay demo");
+    alert("weixin demo");
     var myDate = new Date();
     var tradeNo = myDate.getTime();
 
@@ -40,9 +40,9 @@ angular.module('starter.controllers', [])
 
     var weixin = navigator.weixin;
     weixin.sendPayReq({
-        "appid":"wxb4ba3c02aa476ea1",
-        "urlString":"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php?plat=ios",
-        "method":"get",
+        "appid":"wx321a79afb040b14f",
+        "urlString":"http://91tkp.com:3001/wxSign",
+        "method":"post",
         "data":{}
     },function(retcode){
 
