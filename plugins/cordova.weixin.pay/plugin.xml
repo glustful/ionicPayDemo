@@ -71,7 +71,7 @@
 					<key>CFBundleURLIconFile</key>
 					<string>icon-50@2x</string>
 					<key>CFBundleURLName</key>
-					<string>weixin</string>
+					<string>wxb4ba3c02aa476ea1</string>
 					<key>CFBundleURLSchemes</key>
 					<array>
 						<string>wxb4ba3c02aa476ea1</string>
@@ -107,7 +107,7 @@
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
 
       <activity
-        android:name="com.sharedParking.mz.wxapi.WXPayEntryActivity"
+        android:name=".wxapi.WXPayEntryActivity"
         android:exported="true"
         android:launchMode="singleTop">
       </activity>
