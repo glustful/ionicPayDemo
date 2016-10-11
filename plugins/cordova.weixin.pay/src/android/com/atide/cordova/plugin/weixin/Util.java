@@ -82,7 +82,7 @@ public class Util {
 
 		HttpClient httpClient = getNewHttpClient();
 		if (dict!=null){
-			url += initParamForGet(dict);
+			url += "?" + initParamForGet(dict);
 		}
 		HttpGet httpGet = new HttpGet(url);
 
