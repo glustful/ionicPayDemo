@@ -118,7 +118,7 @@ public class Util {
 				httpPost.setEntity(new UrlEncodedFormEntity(initParamForPost(dict),HTTP.UTF_8));
 
 			httpPost.setHeader("Accept", "application/json");
-			httpPost.setHeader("Content-type", "application/json");
+			//httpPost.setHeader("Content-type", "application/json");
 
 			HttpResponse resp = httpClient.execute(httpPost);
 			if (resp.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
