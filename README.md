@@ -1,5 +1,5 @@
- ### ionicPayDemo
-cordova 支付插件，支付宝与微信支付
+ #ionicPayDemo
+##cordova 支付插件，支付宝与微信支付
 目前支持支付宝支付的安卓端与ios端，微信的ios端
 
 使用方法：
