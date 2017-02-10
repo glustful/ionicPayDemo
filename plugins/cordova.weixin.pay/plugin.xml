@@ -71,10 +71,10 @@
 					<key>CFBundleURLIconFile</key>
 					<string>icon-50@2x</string>
 					<key>CFBundleURLName</key>
-					<string>wxb4ba3c02aa476ea1</string>
+					<string>wxxxxxxxxxxx</string>
 					<key>CFBundleURLSchemes</key>
 					<array>
-						<string>wxb4ba3c02aa476ea1</string>
+						<string>wxxxxxxxxxxx</string>
 					</array>
 				</dict>
 			</array>
@@ -94,7 +94,7 @@
       <intent-filter>
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
-        <data android:scheme="wx321a79afb040b14f"/>
+        <data android:scheme="wxxxxxxxxxxxx"/>
       </intent-filter>
     </config-file>
 
